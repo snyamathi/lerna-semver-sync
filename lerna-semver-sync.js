@@ -106,6 +106,14 @@ function sync(opts = {}) {
     const commonRanges = getCommonRanges(allDependencies);
     const modifiedPackages = applyCommonRanges(packagePaths, commonRanges);
     modifiedPackages.forEach(({ packagePath, pkg }) => writePackage(packagePath, pkg));
+
+    const duplicates = reduce(getAllDependencies(packagePaths), (result, versions, name) => {
+        if (versions.length > 1) {
+            result[name] = versions;
+        }
+        return result;
+    }, {});
+    return duplicates;
 }
 
 function upsert (obj, key, value) {
