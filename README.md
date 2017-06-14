@@ -1,4 +1,4 @@
-# lerna-semver-sync [![Build Status](https://travis-ci.org/snyamathi/lerna-semver-sync.svg?branch=master)](https://travis-ci.org/snyamathi/lerna-semver-sync)
+# lerna-semver-sync [![Build Status](https://travis-ci.org/snyamathi/lerna-semver-sync.svg?branch=master)](https://travis-ci.org/snyamathi/lerna-semver-sync) [![npm](https://img.shields.io/npm/v/lerna-semver-sync.svg)](https://www.npmjs.com/package/lerna-semver-sync)
 Keep the dependency versions in sync for each package in a monorepo
 
 ## Problem
