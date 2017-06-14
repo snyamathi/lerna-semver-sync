@@ -1,0 +1,9 @@
+*.log
+*.tgz
+.eslintignore
+.eslintrc.yml
+.npmignore
+.nyc_output
+.travis.yml
+artifacts
+tests
