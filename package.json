@@ -6,6 +6,7 @@
     "bugs": "http://github.com/snyamathi/lerna-semver-sync/issues",
     "contributors": [],
     "dependencies": {
+        "glob": "^7.0.0",
         "lodash": "^4.0.0",
         "semver-intersect": "^1.1.0"
     },
@@ -31,5 +32,5 @@
         "pretest": "npm run lint",
         "test": "jenkins-mocha tests/unit --recursive"
     },
-    "version": "1.1.1"
+    "version": "1.1.2"
 }
