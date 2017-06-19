@@ -3,7 +3,6 @@ const forEach = require('lodash/forEach');
 const fs = require('fs');
 const glob = require('glob');
 const intersect = require('semver-intersect').intersect;
-const path = require('path');
 const reduce = require('lodash/reduce');
 
 function applyCommonRange (dependencies, name, commonRange) {

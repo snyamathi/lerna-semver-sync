@@ -150,7 +150,7 @@ describe('getCommonRange', () => {
     it('should return the common semver for each major version', () => {
         const result = getCommonRange(['0.14.x || ^15.5.0', '~0.14.3 || ^15.0.0']);
         expect(result).to.deep.equal({
-            '0': '~0.14.3',
+            '0': '^0.14.3',
             '15': '^15.5.0'
         });
     });
@@ -236,16 +236,6 @@ describe('sync', () => {
 
     it('writes updated packages to disk', () => {
         const packagePaths = ['packages/foo/package.json', 'packages/bar/package.json', 'packages/baz/package.json'];
-        const commonRanges = {
-            lodash: {
-                '4': '^4.2.33'
-            },
-            react: {
-                '0': '~0.14.3',
-                '15': '~15.7.0'
-            }
-        };
-
         glob.sync.returns(packagePaths);
         fs.readFileSync.withArgs('packages/foo/package.json').returns(JSON.stringify({
             dependencies: {
@@ -261,7 +251,7 @@ describe('sync', () => {
         fs.readFileSync.withArgs('packages/baz/package.json').returns(JSON.stringify({
             dependencies: {
                 lodash: '^4.0.0',
-                react: '~0.14.3 || ^15.0.0'
+                react: '^0.14.3 || ^15.0.0'
             }
         }, null, 2));
 
@@ -272,7 +262,7 @@ describe('sync', () => {
             JSON.stringify({
                 dependencies: {
                     lodash: '^4.2.33',
-                    react: '~0.14.3 || ^15.5.0'
+                    react: '^0.14.3 || ^15.5.0'
                 }
             }, null, 2),
             'utf-8'
