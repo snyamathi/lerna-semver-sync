@@ -237,6 +237,11 @@ describe('sync', () => {
     it('writes updated packages to disk', () => {
         const packagePaths = ['packages/foo/package.json', 'packages/bar/package.json', 'packages/baz/package.json'];
         glob.sync.returns(packagePaths);
+        fs.readFileSync.withArgs('package.json').returns(JSON.stringify({
+            devDependencies: {
+                lodash: '^4.1.665'
+            }
+        }, null, 2));
         fs.readFileSync.withArgs('packages/foo/package.json').returns(JSON.stringify({
             dependencies: {
                 lodash: '^4.1.234',
