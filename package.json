@@ -1,36 +1,36 @@
 {
-    "author": "Suneil Nyamathi <snyamathi@gmail.com>",
-    "bin": {
-        "lerna-semver-sync": "bin/lerna-semver-sync.js"
-    },
-    "bugs": "http://github.com/snyamathi/lerna-semver-sync/issues",
-    "contributors": [],
-    "dependencies": {
-        "glob": "^7.0.0",
-        "lodash": "^4.0.0",
-        "semver-intersect": "^1.1.0"
-    },
-    "description": "Keep the dependency versions in sync for each package in a monorepo",
-    "devDependencies": {
-        "chai": "^4.0.0",
-        "eslint": "^4.0.0",
-        "jenkins-mocha": "^4.0.0",
-        "sinon": "^2.3.4"
-    },
-    "keywords": [
-        "semver"
-    ],
-    "license": "MIT",
-    "main": "lerna-semver-sync.js",
-    "name": "lerna-semver-sync",
-    "repository": {
-        "type": "git",
-        "url": "git@github.com/snyamathi/lerna-semver-sync"
-    },
-    "scripts": {
-        "lint": "eslint .",
-        "pretest": "npm run lint",
-        "test": "jenkins-mocha tests/unit --recursive"
-    },
-    "version": "1.1.2"
+  "author": "Suneil Nyamathi <snyamathi@gmail.com>",
+  "bin": {
+    "lerna-semver-sync": "bin/lerna-semver-sync.js"
+  },
+  "bugs": "http://github.com/snyamathi/lerna-semver-sync/issues",
+  "contributors": [],
+  "dependencies": {
+    "glob": "^7.0.0",
+    "lodash": "^4.0.0",
+    "semver-intersect": "^1.1.0"
+  },
+  "description": "Keep the dependency versions in sync for each package in a monorepo",
+  "devDependencies": {
+    "chai": "^4.0.0",
+    "eslint": "^4.0.0",
+    "jenkins-mocha": "^4.0.0",
+    "sinon": "^2.3.4"
+  },
+  "keywords": [
+    "semver"
+  ],
+  "license": "MIT",
+  "main": "lerna-semver-sync.js",
+  "name": "lerna-semver-sync",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com/snyamathi/lerna-semver-sync"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "jenkins-mocha tests/unit --recursive"
+  },
+  "version": "1.2.0"
 }
