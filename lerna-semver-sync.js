@@ -31,10 +31,17 @@ function applyCommonRanges (packagePaths, commonRanges) {
         let modified = false;
         let pkg = getPackage(packagePath);
         let dependencies = pkg.dependencies || {};
+        let devDependencies = pkg.devDependencies || {};
 
         Object.keys(dependencies || {}).forEach(name => {
             const commonRange = commonRanges[name];
             const didModify = applyCommonRange(dependencies, name, commonRange);
+            modified = didModify || modified;
+        });
+
+        Object.keys(devDependencies || {}).forEach(name => {
+            const commonRange = commonRanges[name];
+            const didModify = applyCommonRange(devDependencies, name, commonRange);
             modified = didModify || modified;
         });
 
@@ -48,8 +55,11 @@ function applyCommonRanges (packagePaths, commonRanges) {
 
 function getAllDependencies (packagePaths) {
     return packagePaths.reduce((result, packagePath) => {
-        const { dependencies } = getPackage(packagePath);
+        const { dependencies, devDependencies } = getPackage(packagePath);
         forEach(dependencies, (range, name) => {
+            upsert(result, name, range);
+        });
+        forEach(devDependencies, (range, name) => {
             upsert(result, name, range);
         });
         return result;
@@ -100,7 +110,7 @@ function isExactRange (range) {
 
 function sync(opts = {}) {
     const { pattern = 'packages/*/package.json' } = opts;
-    const packagePaths = glob.sync(pattern, { cwd });
+    const packagePaths = glob.sync(pattern, { cwd }).concat('package.json');
     const allDependencies = getAllDependencies(packagePaths);
     const commonRanges = getCommonRanges(allDependencies);
     const modifiedPackages = applyCommonRanges(packagePaths, commonRanges);
