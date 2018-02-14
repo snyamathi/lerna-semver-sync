@@ -14,8 +14,8 @@
   "devDependencies": {
     "chai": "^4.0.0",
     "eslint": "^4.0.0",
-    "jenkins-mocha": "^4.0.0",
-    "sinon": "^2.3.4"
+    "jenkins-mocha": "^6.0.0",
+    "sinon": "^4.3.0"
   },
   "keywords": [
     "semver"
