@@ -1,7 +1,4 @@
-# lerna-semver-sync [![Build Status](https://travis-ci.org/snyamathi/lerna-semver-sync.svg?branch=master)](https://travis-ci.org/snyamathi/lerna-semver-sync) [![npm](https://img.shields.io/npm/v/lerna-semver-sync.svg)](https://www.npmjs.com/package/lerna-semver-sync)
-
-[![Greenkeeper badge](https://badges.greenkeeper.io/snyamathi/lerna-semver-sync.svg)](https://greenkeeper.io/)
-Keep the dependency versions in sync for each package in a monorepo
+# lerna-semver-sync [![npm](https://img.shields.io/npm/v/lerna-semver-sync.svg)](https://www.npmjs.com/package/lerna-semver-sync) [![Build Status](https://travis-ci.org/snyamathi/lerna-semver-sync.svg?branch=master)](https://travis-ci.org/snyamathi/lerna-semver-sync) [![David](https://david-dm.org/snyamathi/lerna-semver-sync.svg)](https://david-dm.org/snyamathi/lerna-semver-sync) [![Downloads](https://img.shields.io/npm/dm/lerna-semver-sync.svg)](https://npm-stat.com/charts.html?package=lerna-semver-sync) [![Greenkeeper badge](https://badges.greenkeeper.io/snyamathi/lerna-semver-sync.svg)](https://greenkeeper.io/)
 
 ## Problem
 Lerna seems to have some trouble with different dependency versions, even if they both "resolve" to the same version.  For example, both `^4.1.0` and `^4.2.0` may end up installing `4.5.6`, but Lerna doesn't de-duplicate the dependencies because the semver declaration is not identical.  This leads to slower install times, particularly in a CI/CD environment where this is done many times per day.
