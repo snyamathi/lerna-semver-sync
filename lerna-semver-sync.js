@@ -4,6 +4,7 @@ const fs = require('fs');
 const glob = require('glob');
 const intersect = require('semver-intersect').intersect;
 const reduce = require('lodash/reduce');
+const semver = require('semver');
 
 function applyCommonRange (dependencies, name, commonRange) {
     const range = dependencies[name];
@@ -57,10 +58,14 @@ function getAllDependencies (packagePaths) {
     return packagePaths.reduce((result, packagePath) => {
         const { dependencies, devDependencies } = getPackage(packagePath);
         forEach(dependencies, (range, name) => {
-            upsert(result, name, range);
+            if (semver.validRange(range)) {
+                upsert(result, name, range);
+            }
         });
         forEach(devDependencies, (range, name) => {
-            upsert(result, name, range);
+            if (semver.validRange(range)) {
+                upsert(result, name, range);
+            }
         });
         return result;
     }, {});
@@ -116,7 +121,7 @@ function sync(opts = {}) {
     const modifiedPackages = applyCommonRanges(packagePaths, commonRanges);
     modifiedPackages.forEach(({ packagePath, pkg }) => writePackage(packagePath, pkg));
 
-    const duplicates = reduce(getAllDependencies(packagePaths), (result, versions, name) => {
+    const duplicates = reduce(allDependencies, (result, versions, name) => {
         if (versions.length > 1) {
             result[name] = versions;
         }

@@ -114,6 +114,10 @@ describe('getAllDependencies', () => {
         sinon.stub(fs, 'readFileSync');
     });
 
+    beforeEach(() => {
+        fs.readFileSync.reset();
+    });
+
     after(() => {
         fs.readFileSync.restore();
     });
@@ -136,6 +140,42 @@ describe('getAllDependencies', () => {
         expect(result).to.deep.equal({
             lodash: [
                 '^4.1.234',
+                '^4.0.0'
+            ],
+            react: [
+                '0.14.x || ^15.5.0',
+                '~0.14.3 || ^15.0.0'
+            ]
+        });
+    });
+
+    it('should ignore dependencies on a url, file, etc.', () => {
+        fs.readFileSync.onCall(0).returns(JSON.stringify({
+            dependencies: {
+                lodash: 'file:../dyl',
+                react: '0.14.x || ^15.5.0'
+            }
+        }));
+        fs.readFileSync.onCall(1).returns(JSON.stringify({
+            dependencies: {
+                lodash: '^4.0.0',
+                react: 'git+https://isaacs@github.com/npm/npm.git'
+            }
+        }));
+        fs.readFileSync.onCall(2).returns(JSON.stringify({
+            dependencies: {
+                lodash: 'expressjs/express',
+                react: '~0.14.3 || ^15.0.0'
+            }
+        }));
+        const packagePaths = [
+            'packages/foo/package.json',
+            'packages/bar/package.json',
+            'packages/baz/package.json'
+        ];
+        const result = getAllDependencies(packagePaths);
+        expect(result).to.deep.equal({
+            lodash: [
                 '^4.0.0'
             ],
             react: [
