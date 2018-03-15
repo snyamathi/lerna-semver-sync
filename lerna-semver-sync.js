@@ -71,7 +71,7 @@ function getAllDependencies (packagePaths) {
     }, {});
 }
 
-function getCommonRange (compoundRanges) {
+function getCommonRange (compoundRanges, name) {
     const majorVersions = compoundRanges.reduce((result, compoundRange) => {
         compoundRange.split('||').map(range => range.trim()).forEach(range => {
             if (isExactRange(range)) {
@@ -86,7 +86,11 @@ function getCommonRange (compoundRanges) {
     }, {});
 
     forEach(majorVersions, (ranges, majorVersion) => {
-        majorVersions[majorVersion] = intersect(...ranges);
+        try {
+            majorVersions[majorVersion] = intersect(...ranges);
+        } catch(e) {
+            console.log(`error in intersect version on package: ${name}`);
+        }
     });
 
     return majorVersions;
@@ -94,7 +98,7 @@ function getCommonRange (compoundRanges) {
 
 function getCommonRanges (allDependencies) {
     return reduce(allDependencies, (result, ranges, name) => {
-        result[name] = getCommonRange(ranges);
+        result[name] = getCommonRange(ranges, name);
         return result;
     }, {});
 }
