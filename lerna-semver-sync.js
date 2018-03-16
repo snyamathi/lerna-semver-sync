@@ -86,7 +86,12 @@ function getCommonRange (compoundRanges) {
     }, {});
 
     forEach(majorVersions, (ranges, majorVersion) => {
-        majorVersions[majorVersion] = intersect(...ranges);
+        try {
+            majorVersions[majorVersion] = intersect(...ranges);
+        } catch(e) {
+            // bypass the error happened in intersect function
+            // let the `duplicates` object return by Sync funtion handle the warning
+        }
     });
 
     return majorVersions;
