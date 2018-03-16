@@ -71,7 +71,7 @@ function getAllDependencies (packagePaths) {
     }, {});
 }
 
-function getCommonRange (compoundRanges, name) {
+function getCommonRange (compoundRanges) {
     const majorVersions = compoundRanges.reduce((result, compoundRange) => {
         compoundRange.split('||').map(range => range.trim()).forEach(range => {
             if (isExactRange(range)) {
@@ -99,7 +99,7 @@ function getCommonRange (compoundRanges, name) {
 
 function getCommonRanges (allDependencies) {
     return reduce(allDependencies, (result, ranges, name) => {
-        result[name] = getCommonRange(ranges, name);
+        result[name] = getCommonRange(ranges);
         return result;
     }, {});
 }
