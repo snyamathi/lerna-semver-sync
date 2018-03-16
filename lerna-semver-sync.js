@@ -89,7 +89,8 @@ function getCommonRange (compoundRanges, name) {
         try {
             majorVersions[majorVersion] = intersect(...ranges);
         } catch(e) {
-            console.log(`error in intersect version on package: ${name}`);
+            // bypass the error happened in intersect function
+            // let the `duplicates` object return by Sync funtion handle the warning
         }
     });
 
