@@ -16,7 +16,7 @@
     "chai": "^4.0.0",
     "eslint": "^4.0.0",
     "jenkins-mocha": "^6.0.0",
-    "sinon": "^5.0.0"
+    "sinon": "^6.0.0"
   },
   "keywords": [
     "semver"
