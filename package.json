@@ -14,7 +14,7 @@
   "description": "Keep the dependency versions in sync for each package in a monorepo",
   "devDependencies": {
     "chai": "^4.0.0",
-    "eslint": "^5.0.0",
+    "eslint": "^6.0.0",
     "sinon": "^7.2.4",
     "jenkins-mocha": "^7.0.0"
   },
