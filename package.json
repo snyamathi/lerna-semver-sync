@@ -6,16 +6,16 @@
   "bugs": "http://github.com/snyamathi/lerna-semver-sync/issues",
   "contributors": [],
   "dependencies": {
-    "glob": "^7.0.0",
-    "lodash": "^4.0.0",
-    "semver": "^6.0.0",
-    "semver-intersect": "^1.1.0"
+    "glob": "^7.1.6",
+    "lodash": "^4.17.15",
+    "semver": "^6.3.0",
+    "semver-intersect": "^1.4.0"
   },
   "description": "Keep the dependency versions in sync for each package in a monorepo",
   "devDependencies": {
-    "chai": "^4.0.0",
-    "eslint": "^6.0.0",
-    "sinon": "^8.0.0",
+    "chai": "^4.2.0",
+    "eslint": "^6.8.0",
+    "sinon": "^9.0.2",
     "jenkins-mocha": "^8.0.0"
   },
   "keywords": [
